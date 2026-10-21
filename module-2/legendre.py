@@ -3,6 +3,7 @@
 #------------------------------------------------------------------------------
 
 def legpoly(n,x):
+
     """Return value at x of ordinary Legendre Polynomial or degree n.
 
     This function implements the two-point recursion relation:
@@ -27,14 +28,23 @@ def legpoly(n,x):
     assert (type(n) is int) and (n >= 0), "n must be nonnegative integer"
     assert (x >= -1) and (x <= 1), "x must be in [-1,1]" 
 
-    # Calculate P_n(x)
-    ### THIS IS WHERE YOU COME IN
-    ### USE AS MANY LINES AS YOU NEED
-    ### USE A FOR LOOP OR WHILE LOOP, WHICHEVER YOU LIKE
-    y = None
-    ###
-
+    if n == 0:
+        y = 1.0
+    elif n == 1:
+        y = x
+    else:
+        P_a = x   #defines initial value of P_a = P_1 = P_{k-1}
+        P_b = 1   #defines initial value of P_b = P_0 = P_{k-2}
+        for k in range(2, n+1):
+            P_k = ( (2*(k-1) + 1) * x * P_a - (k-1) * P_b ) / k   #defines P_k using the recursion relation
+            
+            if k == n:
+                y = P_k
+            else:
+                P_b = P_a   #Shifts P_a back one space to P_b
+                P_a = P_k   #Shifts P_k back one space to P_a
     return y
+   
 
 ### For testing during development
 def _test1():
