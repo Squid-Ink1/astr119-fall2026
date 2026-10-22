@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # This module defines multitab() a multiplication table generator.
 #------------------------------------------------------------------------------
-import math``
+import math
 
 def multitab(n):
     """Print multiplication table up to n.
@@ -14,13 +14,14 @@ def multitab(n):
     -------
     None
     """
+    
     assert (type(n) is int) and (n > 0), "n must be positive integer"
 
-    ### THIS IS WHERE YOU COME IN
-    ### USE AS MANY LINES AS YOU NEED
-    ### USE A FOR LOOP OR WHILE LOOP, WHICHEVER YOU LIKE
-    ### YOU WILL PROBABLY NEED TO LOOK UP SOME THINGS
-    ### YOU WILL DISCOVER A USEFUL OPTIONAL PARAMETER TO THE FUNCTION PRINT()
+    w = int(math.log10(n**2)) + 1   # calculates the width the collumns must be to avoid drift
+    for k in range(1, n+1):
+            for i in range(1, n+1):
+                print(f"{k*i:>{w}}", end=' ')
+            print()
 
     return None
 
