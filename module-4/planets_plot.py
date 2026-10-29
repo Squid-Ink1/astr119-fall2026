@@ -17,10 +17,24 @@ def t_eq(L, d):
     """Equilibrium temperature (K) at distance d (m) from a star of luminosity L (W)."""
     return (L / (16 * np.pi * SIGMA * d**2)) ** 0.25
 
-
 if __name__ == "__main__":
-    T = t_eq(lum * L_SUN, dist * AU)
+    T = t_eq(lum * L_SUN, dist * AU) # calculate the equilibrium temperatures for each planet
+
+    d = np.linspace(0.01, 10, 100) # create a range of distances for the curve
+    T_curve = t_eq(L_SUN, d * AU) # calculate the equilibrium temperature curve for a solar-luminosity star
+
     fig, ax = plt.subplots()
-    ax.scatter(dist, T)
-    fig.savefig("module-4/planets.png", dpi=150)
-    print("wrote module-4/planets.png")
+
+    ax.scatter(dist, T) # plot the equilibrium temperatures of the planets at their respective distances
+    ax.plot(d, T_curve) # plot the equilibrium temperature curve for a solar-luminosity star
+
+    ax.set_xlabel("Distance from star (AU)") # label the x-axis
+    ax.set_ylabel("Equilibrium temperature (K)") # label the y-axis
+
+    ax.set_xscale("log") # use a logarithmic scale for the x-axis
+    ax.set_yscale("log") # use a logarithmic scale for the y-axis
+
+    for n, x, y in zip(name, dist, T): ax.annotate(n, (x, y), fontsize=7) # assign names to data points from the name array
+    
+    fig.savefig("module-4/planets.png", dpi=150) # save the plot to a file
+    print("wrote module-4/planets.png") # print a message when the file is saved
