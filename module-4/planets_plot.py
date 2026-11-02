@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 SIGMA = 5.67e-8          # Stefan-Boltzmann constant, W m^-2 K^-4
 L_SUN = 3.8e26           # solar luminosity, W
 AU = 1.496e11            # meters per AU
+L_HSUN = L_SUN / 2       # half the solar luminosity
 
 name = np.array(["Earth", "Mars", "HD 209458 b", "51 Peg b", "TRAPPIST-1 e",
                  "Kepler-22 b", "55 Cnc e", "HD 189733 b", "Kepler-452 b", "Proxima b"])
@@ -28,13 +29,18 @@ if __name__ == "__main__":
     ax.scatter(dist, T) # plot the equilibrium temperatures of the planets at their respective distances
     ax.plot(d, T_curve) # plot the equilibrium temperature curve for a solar-luminosity star
 
-    ax.set_xlabel("Distance from star (AU)") # label the x-axis
-    ax.set_ylabel("Equilibrium temperature (K)") # label the y-axis
-
     ax.set_xscale("log") # use a logarithmic scale for the x-axis
     ax.set_yscale("log") # use a logarithmic scale for the y-axis
 
-    for n, x, y in zip(name, dist, T): ax.annotate(n, (x, y), fontsize=7) # assign names to data points from the name array
+    for n, x, y in zip(name, dist, T):
+
+        # I tried to change the labels so they wouldn't overlap, but I couldn't figure it out in time.
+
+        ax.annotate(n, (x, y), fontsize=7) # assign names to data points from the name array
+
+    ax.set_xlabel("Distance from star (AU)") # label the x-axis
+    ax.set_ylabel("Equilibrium temperature (K)") # label the y-axis
+    ax.set_title("Equilibrium Temperatures of Planets vs Distance from Star")
     
     fig.savefig("module-4/planets.png", dpi=150) # save the plot to a file
     print("wrote module-4/planets.png") # print a message when the file is saved
