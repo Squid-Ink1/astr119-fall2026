@@ -19,7 +19,7 @@ def product_remaining(r, R_new=3):
     """
 
     x = r / R_new
-    f = ( (9*(x**2)) - 1 ) / 8
+    f = ( (R_new*(x**2)) - 1 ) / ((R_new**2) - 1)
 
     return f
 
@@ -40,7 +40,7 @@ def product_visible(el_frac, R_new=3):
     """
 
     f = el_frac
-    x = np.sqrt(( (8*f) + 1 ) / 9)
+    x = np.sqrt( ( ( ((R_new**2)-1) * f ) + 1 ) / (R_new**2) )
 
     return x
 
