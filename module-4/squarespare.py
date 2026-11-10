@@ -21,7 +21,7 @@ def product_remaining(r, R_new=3):
     x = r / R_new
     f = ( (9*(x**2)) - 1 ) / 8
 
-    return f ### REPLACE WITH CORRECT FORMULA
+    return f
 
 def product_visible(el_frac, R_new=3):
     """Visible roll radius by fraction of remaining product.
@@ -42,7 +42,7 @@ def product_visible(el_frac, R_new=3):
     f = el_frac
     x = np.sqrt(( (8*f) + 1 ) / 9)
 
-    return x ### REPLACE WITH CORRECT FORMULA
+    return x
 
 def visualize_danger(n, R_new=3, saveas=''):
     """Use n line segments of equal product to visualize paradox of the roll.
