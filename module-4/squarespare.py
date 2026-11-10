@@ -69,12 +69,24 @@ def visualize_danger(n, R_new=3, saveas=''):
 
     # Do the core plotting commands here
     ## use the functions defined above to calculate the line segments to plot
+    fracs = np.linspace(0, 1, n + 1)        # fraction remaining at each boundary
+    radii = product_visible(fracs, R_new)   # in units of R_new: 1/R_new ... 1
+
+    ax = fh.add_subplot(1, 1, 1)
+    ax.add_patch(plt.Circle((0, 0), radii[0], color='0.75'))   # shaded core
+    for r in radii:
+        ax.add_patch(plt.Circle((0, 0), r, fill=False, color='k'))
 
     # Set axes properties here for a better view
     ## things like axis limits and tick marks
+    ax.set_xlim(-1.05, 1.05)
+    ax.set_ylim(-1.05, 1.05)
+    ax.set_aspect('equal')   # circles look like circles, not ellipses
+    ax.axis('off')           # spec: no axes or labels
 
     # Stylize and annotate
     ## things like axes labels, font sizes, or any other finishing touches
+    ax.set_title('five equal amounts of paper (core at one third of the radius)')
 
     ######################
 
@@ -84,6 +96,4 @@ def visualize_danger(n, R_new=3, saveas=''):
     plt.close()   # figures in this course are files: look at the saved PNG (plt.show() would pop a window instead)
 
 if __name__ == '__main__':
-    visualize_danger(5, saveas='roll_paradox_5.png')
-    visualize_danger(3, saveas='roll_paradox_3.png')
-    visualize_danger(9, saveas='roll_paradox_9.png')
+    visualize_danger(5, saveas='squarespare.png')
