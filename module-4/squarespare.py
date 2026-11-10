@@ -19,7 +19,7 @@ def product_remaining(r, R_new=3):
     """
 
     x = r / R_new
-    f = ( (R_new*(x**2)) - 1 ) / ((R_new**2) - 1)
+    f = ( ( (R_new**2) * (x**2) ) - 1 ) / ((R_new**2) - 1)
 
     return f
 
