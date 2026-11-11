@@ -77,6 +77,13 @@ def visualize_danger(n, R_new=3, saveas=''):
     for r in radii:
         ax.add_patch(plt.Circle((0, 0), r, fill=False, color='k'))
 
+    # Label each ring's thickness, converted from units of R_new to units of r0
+    thick = np.diff(radii)                  # n thicknesses, outer ones smaller
+    mids = (radii[:-1] + radii[1:]) / 2     # midpoint of each ring along +x
+    for xm, t in zip(mids, thick):
+        ax.text(xm, 0, f'{t * R_new:.3f}', rotation=90, fontsize=8,
+                ha='center', va='center')
+
     # Set axes properties here for a better view
     ## things like axis limits and tick marks
     ax.set_xlim(-1.05, 1.05)
